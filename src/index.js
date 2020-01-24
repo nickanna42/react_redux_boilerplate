@@ -1,12 +1,29 @@
+/**
+This bootstraps the overall react application
+**/
+
+// React dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+
+// Redux and react-redux dependencies
+import { createStore } from 'redux';
+import reduxReducer from './reduxElements/index';
+import { Provider as ReduxProvider } from 'react-redux';
+
+// React Application entry-point
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// creates the redux store
+const reduxStore = createStore(
+  reduxReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // this lets you use the browser redux viewer, if your browser has that plugin
+);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// places the react application on the DOM
+ReactDOM.render(
+  <ReduxProvider store={reduxStore}>
+    <App />
+  </ReduxProvider>,
+  document.getElementById('root')
+);
