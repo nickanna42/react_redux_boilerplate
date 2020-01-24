@@ -4,7 +4,7 @@
 *** asyncronous
 **/
 
-export async exampleFetch() {
+export const exampleFetch = async () => {
   // fetch data here. Use `await`
   return [
     { title: 'Test 1', detail: 'I am some notes' },
@@ -12,6 +12,6 @@ export async exampleFetch() {
   ];
 };
 
-export async examplePersist(inputNotes) {
+export const examplePersist = async (inputNotes) => {
   return { status: 'success', notes: 'It went okay' };
-}
+};
