@@ -5,6 +5,8 @@ import { placeList } from './reduxElements/actions';
 
 import { exampleFetch } from './remoting/'
 
+import List from './components/List';
+
 // import {  } from './styles/commonStyles';
 
 class App extends React.Component {
@@ -16,7 +18,7 @@ class App extends React.Component {
   }
 
   render() {
-    return 'hello world';
+    return (<List />);
   }
 }
 
