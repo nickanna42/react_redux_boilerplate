@@ -9,12 +9,24 @@ import ReactDOM from 'react-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import { store as reduxStore }  from './reduxElements';
 
+// Style Helpers
+import CssBaseline from '@mui/material/CssBaseline';
+import '@fontsource/roboto';
+
+// Material-UI Style provider dependencies
+import { ThemeProvider } from '@mui/material/styles';
+import { defaultTheme } from './styles/materialThemes';
+
+
 // React Application entry-point
 import App from './App';
 
 ReactDOM.render(
-  <ReduxProvider store={reduxStore}>
-    <App />
-  </ReduxProvider>,
+  <ThemeProvider theme={defaultTheme}>
+    <CssBaseline />
+    <ReduxProvider store={reduxStore}>
+      <App />
+    </ReduxProvider>
+  </ThemeProvider>,
   document.getElementById('root')
 );

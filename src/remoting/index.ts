@@ -10,6 +10,7 @@ import {
   decUiBusy,
   addUiError,
 } from '../reduxElements/remotingState';
+import { AsyncThunk, createAsyncThunk } from '@reduxjs/toolkit';
 
 const fetchWrapper = (url: RequestInfo | URL, options: RequestInit={}) => async (dispatch: AppDispatch) =>{
   dispatch(incUiBusy);
@@ -21,7 +22,7 @@ const fetchWrapper = (url: RequestInfo | URL, options: RequestInit={}) => async 
         'Content-Type': 'application/json',
         ...options.headers,
       }, 
-    });
+    }).then(res => res.json());
   } catch (err: any) {
     dispatch(addUiError(`Call to '${url}' failed\n${err?.statusCode} - ${err?.statusText}`));
   }
@@ -31,14 +32,9 @@ const fetchWrapper = (url: RequestInfo | URL, options: RequestInit={}) => async 
   return output;
 }
 
-export const exampleFetch = () => async (dispatch: AppDispatch, getState:AppGetState ) =>{
-    // fetch data here. Use `await dispatch(fetchWrapper())`
-    const results = await dispatch(fetchWrapper(
-      '/example'
-    )).then(res => {
-      if (res === undefined) return res;
-      return res.json();
-    }) as {exampleKey: string} | undefined
+export const exampleFetch = () => async (_dispatch:AppDispatch, _getState: AppGetState ) =>{
+    // fetch data here. Use `await dispatch(fetchWrapper()) as YourType | undefined`
+    const results = 'hello';
 
     return results;
   };
