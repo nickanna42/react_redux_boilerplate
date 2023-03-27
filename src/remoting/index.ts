@@ -10,7 +10,6 @@ import {
   decUiBusy,
   addUiError,
 } from '../reduxElements/remotingState';
-import { AsyncThunk, createAsyncThunk } from '@reduxjs/toolkit';
 
 const fetchWrapper = (url: RequestInfo | URL, options: RequestInit={}) => async (dispatch: AppDispatch) =>{
   dispatch(incUiBusy);
